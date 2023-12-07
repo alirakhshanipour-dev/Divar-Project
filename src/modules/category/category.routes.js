@@ -4,7 +4,7 @@ const Authorization = require("../../common/guard/authorization.guard.js")
 
 const router = Router()
 
-router.get("/")
+router.get("/", categoryController.find)
 router.post("/", categoryController.create)
 
 module.exports = {

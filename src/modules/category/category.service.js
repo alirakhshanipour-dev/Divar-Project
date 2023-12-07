@@ -46,6 +46,14 @@ class CategoryService {
     }
 
 
+    async find() {
+        const categories = await this.#model
+            .find({ parent: { $exists: false } })
+            .populate([{ path: "children" }])
+        return categories
+    }
+
+
 
 
 
