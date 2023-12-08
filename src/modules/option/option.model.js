@@ -13,4 +13,4 @@ const OptionSchema = new Schema({
 
 const OptionModel = model("option", OptionSchema, "options")
 
-module.exports = OptionModel
+module.exports = { OptionModel }

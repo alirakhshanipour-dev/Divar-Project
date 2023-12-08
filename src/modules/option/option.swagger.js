@@ -26,6 +26,9 @@
  *         category:
  *           type: string
  *           description: category of option
+ *         guide:
+ *           type: string
+ *           description: guide of option
  *         type:
  *           type: string
  *           description: type of option
@@ -64,9 +67,9 @@
 
 /**
  * @swagger
- * /option/{categoryId}:
+ * /option/by-category/{categoryId}:
  *   get:
- *     summary: Get Options Of Categories
+ *     summary: Get Options Of Category
  *     tags:
  *       - Option
  *     parameters:
@@ -76,5 +79,36 @@
  *          
  *     responses:
  *       200:
- *         description: Categories Fetched Successfully.
+ *         description: Category Options Fetched Successfully.
+ */
+
+
+
+/**
+ * @swagger
+ * /option/{id}:
+ *   get:
+ *     summary: Get An Option
+ *     tags:
+ *       - Option
+ *     parameters:
+ *          -   in: path
+ *              name: id
+ *              type: string
+ *
+ *     responses:
+ *       200:
+ *         description: Option Fetched Successfully.
+ */
+
+/**
+ * @swagger
+ * /option:
+ *   get:
+ *     summary: Get All Options
+ *     tags:
+ *       - Option
+ *     responses:
+ *       200:
+ *         description: Options Fetched Successfully.
  */
