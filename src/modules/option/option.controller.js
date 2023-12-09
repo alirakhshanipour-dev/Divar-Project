@@ -62,6 +62,20 @@ class OptionController {
             next(error)
         }
     }
+
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params
+            await this.#service.delete(id)
+            return res
+                .status(HttpStatus.NO_CONTENT)
+                .json({
+                    message: OptionMessagess.OptionDelete
+                })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = new OptionController()

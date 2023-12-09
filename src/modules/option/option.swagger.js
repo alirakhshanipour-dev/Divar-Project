@@ -112,3 +112,21 @@
  *       200:
  *         description: Options Fetched Successfully.
  */
+
+
+/**
+ * @swagger
+ * /option/{id}:
+ *   delete:
+ *     summary: Delete An Option
+ *     tags:
+ *       - Option
+ *     parameters:
+ *          -   in: path
+ *              name: id
+ *              type: string
+ *
+ *     responses:
+ *       204:
+ *         description: Option Deleted Successfully.
+ */

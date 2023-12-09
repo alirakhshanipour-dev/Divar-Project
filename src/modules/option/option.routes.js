@@ -7,5 +7,6 @@ router.get("/by-category/:categoryId", optionController.findByCategoryId)
 router.get("/:id", optionController.findById)
 router.get("/", optionController.find)
 router.post("/", optionController.create)
+router.delete("/:id", optionController.delete)
 
 module.exports = { OptionRouter: router }

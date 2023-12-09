@@ -26,8 +26,8 @@ class OptionService {
         return option
     }
     async find() {
-        const options = await this.#model.find({}, { _id: 0 })
-            .populate([{ path: "category", select: { name: 1, slug: 1, children: 0 } }])
+        const options = await this.#model.find({})
+            .populate([{ path: "category", select: { name: 1, slug: 1 } }])
         return options
     }
     async findByCategoryId(categoryId) {
@@ -39,6 +39,11 @@ class OptionService {
         const option = await this.#model.findById(id)
         if (!option) throw new createHttpError.NotFound(OptionMessagess.OptionNotFound)
         return option
+    }
+    async delete(id) {
+        const option = await this.#model.deleteOne({ _id: id })
+        if (option.deletedCount == 0)
+            throw new createHttpError.NotFound(OptionMessagess.OptionNotFound)
     }
 
 
