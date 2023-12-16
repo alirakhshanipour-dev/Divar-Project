@@ -8,6 +8,7 @@ const OptionSchema = new Schema({
         type: Array, default: []
     },
     guide: { type: String, required: false },
+    required: { type: Boolean, default: false, required: false },
     category: { type: Types.ObjectId, ref: "category", required: true }
 })
 

@@ -13,8 +13,11 @@ class OptionController {
     }
     async create(req, res, next) {
         try {
-            const { title, key, category, guide, type, enum: list } = req.body
-            await this.#service.create({ title, key, category, guide, type, enum: list })
+            const
+                { title, key, category, guide, required, type, enum: list }
+                    = req.body
+            await this.#service
+                .create({ title, key, category, guide, required, type, enum: list })
             return res
                 .status(HttpStatus.CREATED)
                 .json({
@@ -62,7 +65,6 @@ class OptionController {
             next(error)
         }
     }
-
     async delete(req, res, next) {
         try {
             const { id } = req.params
@@ -72,6 +74,22 @@ class OptionController {
                 .json({
                     message: OptionMessagess.OptionDelete
                 })
+        } catch (error) {
+            next(error)
+        }
+    }
+    async update(req, res, next) {
+        try {
+            const { id } = req.params
+            const
+                { title, key, category, guide, required, type, enum: list }
+                    = req.body
+            await this.#service
+                .update(id,
+                    { title, key, category, guide, required, type, enum: list })
+            return res.status(HttpStatus.OK).json({
+                message: OptionMessagess.OptionUpdate
+            })
         } catch (error) {
             next(error)
         }

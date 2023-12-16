@@ -7,6 +7,7 @@ const { isValidObjectId, Types } = require("mongoose");
 const { CategoryMessages } = require("./category.messages.js");
 const { default: slugify } = require("slugify");
 const { default: omitEmpty } = require("omit-empty");
+const { OptionModel } = require("../option/option.model.js");
 
 
 config()
@@ -14,12 +15,12 @@ config()
 // Defining the CategoryService class
 class CategoryService {
     #model;
+    #optionModel
     constructor() {
         autoBind(this);
         this.#model = CategoryModel;
+        this.#optionModel = OptionModel
     }
-
-
 
     async create(CategoryDTO) {
 
@@ -44,13 +45,18 @@ class CategoryService {
         const category = await this.#model.create(CategoryDTO)
         return category
     }
-
-
     async find() {
         const categories = await this.#model
             .find({ parent: { $exists: false } })
             .populate([{ path: "children" }])
         return categories
+    }
+    async delete(id) {
+        await this.checkCategoryExistsById(id)
+        await this.#optionModel.deleteMany({ category: id }).then(async () => {
+            await this.#model.deleteMany({ _id: id })
+        })
+        return true
     }
 
 

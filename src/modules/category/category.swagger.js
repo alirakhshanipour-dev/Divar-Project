@@ -62,3 +62,20 @@
  *       200:
  *         description: Categories Fetched Successfully.
  */
+
+
+/**
+ * @swagger
+ * /category/{id}:
+ *   delete:
+ *     summary: Delete Category
+ *     tags:
+ *       - Category
+ *     parameters:
+ *          -   in: path
+ *              name: id
+ *              type: string
+ *     responses:
+ *       200:
+ *         description: Categories Deleted Successfully.
+ */
